@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using Unity.VisualScripting;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class RoomGenerator : MonoBehaviour
     public bool bossRoomGenerated = false;
     private int entryDoorIndex = -1; // -1 represents no entry
     [SerializeField] private int oppositeDoorIndex;
+
+    // Room storage
+    private Dictionary<Vector2Int, RoomData> generatedRooms = new Dictionary<Vector2Int, RoomData>();
+    private Vector2Int currentPosition = Vector2Int.zero;
+
 
     void Start()
     {
@@ -38,6 +44,8 @@ public class RoomGenerator : MonoBehaviour
     void GenerateInitialRoom()
     {
         currentRoom = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+        RoomData currentRoomData = new RoomData(currentPosition, currentRoom);
+        generatedRooms[currentPosition] = currentRoomData;
         PlaceDoors(currentRoom);
         roomCount++;
     }
@@ -79,6 +87,7 @@ public class RoomGenerator : MonoBehaviour
         return -1;
     }
 
+    /*
     public void TransitionToNextRoom(int doorIndex)
     {
         entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
@@ -93,8 +102,54 @@ public class RoomGenerator : MonoBehaviour
             GenerateBossRoom();
         }
     }
+    */
 
-    void MirrorPlayerPosition()
+    public void TransitionToNextRoom(int doorIndex)
+    {
+        Vector2Int direction = GetDirectionFromDoorIndex(doorIndex); // Implement this based on your game's logic
+        Vector2Int nextPosition = currentPosition + direction;
+        entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
+
+        if (!generatedRooms.TryGetValue(nextPosition, out RoomData nextRoom))
+        {
+            // Room doesn't exist, create and store it
+            GameObject roomObject = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+            nextRoom = new RoomData(nextPosition, roomObject);
+            generatedRooms[nextPosition] = nextRoom;
+
+            PlaceDoors(roomObject);
+            roomCount++;
+        }
+        else
+        {
+            nextRoom = generatedRooms[nextPosition];
+            if (currentRoom != null) currentRoom.SetActive(false);
+            nextRoom.RoomObject.SetActive(true);
+
+            currentRoom = nextRoom.RoomObject;
+            currentPosition = nextPosition;
+
+            MirrorPlayerPosition(doorIndex);
+            
+            return;
+        }
+
+        if (currentRoom != null) currentRoom.SetActive(false);
+        nextRoom.RoomObject.SetActive(true);
+
+        currentRoom = nextRoom.RoomObject;
+        currentPosition = nextPosition;
+
+        MirrorPlayerPosition(doorIndex);
+
+        if (roomCount == maxRooms && !bossRoomGenerated)
+        {
+            GenerateBossRoom();
+        }
+    }
+
+
+    void MirrorPlayerPosition(int doorIndex)
     {
         Vector3 roomCenter = currentRoom.transform.position;
 
@@ -102,7 +157,18 @@ public class RoomGenerator : MonoBehaviour
 
         Vector3 mirroredPositionRelativeToCenter = new Vector3(-playerPositionRelativeToCenter.x, -playerPositionRelativeToCenter.y, playerPositionRelativeToCenter.z);
 
-        playerTransform.position = roomCenter + mirroredPositionRelativeToCenter;
+        Vector3 offset;
+
+        switch (doorIndex)
+        {
+            case 0: offset = new Vector3(0, 0.2f, 0); break;
+            case 1: offset = new Vector3(0, -0.2f, 0); break;
+            case 2: offset = new Vector3(-0.2f, 0, 0); break;
+            case 3: offset = new Vector3(0.2f, 0, 0); break;
+            default: offset = Vector3.zero; break;
+        }
+
+        playerTransform.position = roomCenter + mirroredPositionRelativeToCenter + offset;
     }
 
 
@@ -118,4 +184,17 @@ public class RoomGenerator : MonoBehaviour
         while (entryDoorIndex >= 0 && randomDoorIndex == entryDoorIndex);
         Instantiate(bossDoorPrefabs[randomDoorIndex], availableDoorSpawnPoints[randomDoorIndex].position, availableDoorSpawnPoints[randomDoorIndex].rotation, currentRoom.transform);
     }
+
+    private Vector2Int GetDirectionFromDoorIndex(int doorIndex)
+    {
+        switch (doorIndex)
+        {
+            case 0: return new Vector2Int(0, 1); // Top door
+            case 1: return new Vector2Int(0, -1); // Bottom door
+            case 2: return new Vector2Int(-1, 0); // Left door
+            case 3: return new Vector2Int(1, 0); // Right door
+            default: return Vector2Int.zero;
+        }
+    }
+
 }
