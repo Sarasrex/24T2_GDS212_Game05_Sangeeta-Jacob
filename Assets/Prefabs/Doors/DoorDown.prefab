@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: -439851636, guid: 34398f76714ed564db1e971f2c5ce384, type: 3}
+  m_Sprite: {fileID: -88315198, guid: 3d7d1831d53b4d94fabf3b785b542634, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 1
+  isOpen: 0
+  openSprite: {fileID: -439851636, guid: 34398f76714ed564db1e971f2c5ce384, type: 3}

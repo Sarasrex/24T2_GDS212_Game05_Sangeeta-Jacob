@@ -7,6 +7,8 @@ public class Door : MonoBehaviour
     public int doorIndex;
     public bool isOpen = false;
 
+    [SerializeField] private Sprite openSprite;
+
     private RoomGenerator roomGenerator;
 
     private void Awake()
@@ -19,6 +21,13 @@ public class Door : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R) && !roomGenerator.bossRoomGenerated)
         {
             isOpen = true;
+            GetComponent<SpriteRenderer>().sprite = openSprite;
+        }
+
+        if (gameObject.CompareTag("BossDoor") && Input.GetKeyDown(KeyCode.R))
+        {
+            isOpen = true;
+            GetComponent<SpriteRenderer>().sprite = openSprite;
         }
     }
 
