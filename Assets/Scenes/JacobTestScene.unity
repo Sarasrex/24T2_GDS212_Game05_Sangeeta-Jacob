@@ -335,10 +335,10 @@ MonoBehaviour:
   - {fileID: 9067196398535247867, guid: 03366391c68f3e642acc7c82d1f8f154, type: 3}
   - {fileID: 460503383421547230, guid: b610844dfc14f7549b44cef38bc649d6, type: 3}
   - {fileID: 9009256381812125487, guid: 9bf8ec12fa7e2bf4689090a756728c71, type: 3}
-  usedDoorSpawnPoints: []
+  playerTransform: {fileID: 477071966}
   availableDoorSpawnPoints: []
-  roomCount: 0
-  maxRooms: 5
+  bossRoomGenerated: 0
+  oppositeDoorIndex: 0
 --- !u!4 &594818549
 Transform:
   m_ObjectHideFlags: 0

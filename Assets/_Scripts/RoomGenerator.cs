@@ -1,84 +1,121 @@
 using UnityEngine;
+using System.Collections.Generic;
+using System.Collections;
 
 public class RoomGenerator : MonoBehaviour
 {
-    public GameObject roomPrefab; // Room prefab
-    public GameObject[] doorPrefabs; // Array of door prefabs (0: top, 1: bottom, 2: left, 3: right)
-    public GameObject[] bossDoorPrefabs; // Array of boss door prefabs (0: top, 1: bottom, 2: left, 3: right)
+    public GameObject roomPrefab;
+    public GameObject[] doorPrefabs; // Array of door prefabs (top, bottom, left, right)
+    public GameObject[] bossDoorPrefabs; // Array of boss door prefabs (top, bottom, left, right)
+    public Transform playerTransform;
 
     private GameObject currentRoom;
-    private Transform[] doorSpawnPoints;
+    [SerializeField] private List<Transform> availableDoorSpawnPoints = new List<Transform>();
     private int roomCount = 0;
     private int maxRooms = 5;
-    private int entryDoorIndex = -1; // -1 indicates no entry door (for the first room)
+    public bool bossRoomGenerated = false;
+    private int entryDoorIndex = -1; // -1 represents no entry
+    [SerializeField] private int oppositeDoorIndex;
 
     void Start()
     {
-        doorSpawnPoints = new Transform[4];
-        CollectDoorSpawnPoints();
-        GenerateRoom(false);
+        FindDoorSpawnPoints();
+        GenerateInitialRoom();
     }
 
-    void CollectDoorSpawnPoints()
+    void FindDoorSpawnPoints()
     {
-        for (int i = 1; i <= doorSpawnPoints.Length; i++)
+        Transform[] allChildren = roomPrefab.GetComponentsInChildren<Transform>();
+        foreach (Transform child in allChildren)
         {
-            doorSpawnPoints[i - 1] = roomPrefab.transform.GetChild(i);
-        }
-    }
-
-    void GenerateRoom(bool isBossRoom)
-    {
-        if (currentRoom != null)
-        {
-            Destroy(currentRoom);
-        }
-
-        currentRoom = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
-
-        // If not the first room, instantiate a door at the entry spawn point
-        if (entryDoorIndex != -1)
-        {
-            Door door = Instantiate(doorPrefabs[entryDoorIndex], doorSpawnPoints[entryDoorIndex].position, Quaternion.identity, currentRoom.transform).GetComponent<Door>();
-            if (door != null)
+            if (child != roomPrefab.transform && !child.CompareTag("Background"))
             {
-                door.Initialize(entryDoorIndex);
+                availableDoorSpawnPoints.Add(child);
             }
         }
+    }
 
-        if (!isBossRoom)
+    void GenerateInitialRoom()
+    {
+        currentRoom = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+        PlaceDoors(currentRoom);
+        roomCount++;
+    }
+
+    void PlaceDoors(GameObject room)
+    {
+        if (entryDoorIndex >= 0)
         {
-            // Generate a random exit door that's not the entry door
-            int exitDoorIndex;
+            Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
+            Instantiate(doorPrefabs[entryDoorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform); // Door player just entered from
+        }
+
+        if (roomCount != maxRooms - 1)
+        {
+            int randomDoorIndex;
             do
             {
-                exitDoorIndex = Random.Range(0, doorSpawnPoints.Length);
+                randomDoorIndex = Random.Range(0, availableDoorSpawnPoints.Count);
             }
-            while (exitDoorIndex == entryDoorIndex);
+            while (entryDoorIndex >= 0 && randomDoorIndex == entryDoorIndex);
 
-            Door exitDoor = Instantiate(doorPrefabs[exitDoorIndex], doorSpawnPoints[exitDoorIndex].position, Quaternion.identity, currentRoom.transform).GetComponent<Door>();
-            if (exitDoor != null)
-            {
-                exitDoor.Initialize(exitDoorIndex);
-            }
+            Instantiate(doorPrefabs[randomDoorIndex], availableDoorSpawnPoints[randomDoorIndex].position, availableDoorSpawnPoints[randomDoorIndex].rotation, room.transform);
         }
-        else
+    }
+
+    int GetOppositeDoorIndex(int entryIndex)
+    {
+        switch (entryIndex)
         {
-            // Boss room generation
-            Door bossDoor = Instantiate(bossDoorPrefabs[Random.Range(0, bossDoorPrefabs.Length)], doorSpawnPoints[entryDoorIndex].position, Quaternion.identity, currentRoom.transform).GetComponent<Door>();
-            if (bossDoor != null)
-            {
-                bossDoor.Initialize(entryDoorIndex);
-            }
+            case 0:
+                return 1;
+            case 1:
+                return 0;
+            case 2:
+                return 3;
+            case 3:
+                return 2;
         }
-
-        roomCount++;
+        return -1;
     }
 
     public void TransitionToNextRoom(int doorIndex)
     {
-        entryDoorIndex = doorIndex; // Use the same door index as the entry for the next room
-        bool isBossRoom = roomCount >= maxRooms;
-        GenerateRoom(isBossRoom);
+        entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
+        Destroy(currentRoom);
+        currentRoom = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
+        PlaceDoors(currentRoom);
+        MirrorPlayerPosition();
+        roomCount++;
+
+        if (roomCount == maxRooms && !bossRoomGenerated)
+        {
+            GenerateBossRoom();
+        }
+    }
+
+    void MirrorPlayerPosition()
+    {
+        Vector3 roomCenter = currentRoom.transform.position;
+
+        Vector3 playerPositionRelativeToCenter = playerTransform.position - roomCenter;
+
+        Vector3 mirroredPositionRelativeToCenter = new Vector3(-playerPositionRelativeToCenter.x, -playerPositionRelativeToCenter.y, playerPositionRelativeToCenter.z);
+
+        playerTransform.position = roomCenter + mirroredPositionRelativeToCenter;
+    }
+
+
+    public void GenerateBossRoom()
+    {
+        bossRoomGenerated = true;
+        Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
+        int randomDoorIndex;
+        do
+        {
+            randomDoorIndex = Random.Range(0, availableDoorSpawnPoints.Count);
+        }
+        while (entryDoorIndex >= 0 && randomDoorIndex == entryDoorIndex);
+        Instantiate(bossDoorPrefabs[randomDoorIndex], availableDoorSpawnPoints[randomDoorIndex].position, availableDoorSpawnPoints[randomDoorIndex].rotation, currentRoom.transform);
     }
 }
