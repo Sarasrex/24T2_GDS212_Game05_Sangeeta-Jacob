@@ -22,7 +22,6 @@ public class RoomGenerator : MonoBehaviour
     private Dictionary<Vector2Int, RoomData> generatedRooms = new Dictionary<Vector2Int, RoomData>();
     private Vector2Int currentPosition = Vector2Int.zero;
 
-
     void Start()
     {
         FindDoorSpawnPoints();
@@ -87,23 +86,6 @@ public class RoomGenerator : MonoBehaviour
         return -1;
     }
 
-    /*
-    public void TransitionToNextRoom(int doorIndex)
-    {
-        entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
-        Destroy(currentRoom);
-        currentRoom = Instantiate(roomPrefab, Vector3.zero, Quaternion.identity);
-        PlaceDoors(currentRoom);
-        MirrorPlayerPosition();
-        roomCount++;
-
-        if (roomCount == maxRooms && !bossRoomGenerated)
-        {
-            GenerateBossRoom();
-        }
-    }
-    */
-
     public void TransitionToNextRoom(int doorIndex)
     {
         Vector2Int direction = GetDirectionFromDoorIndex(doorIndex); // Implement this based on your game's logic
@@ -148,7 +130,7 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
-
+    // Sangeeta is a nerd
     void MirrorPlayerPosition(int doorIndex)
     {
         Vector3 roomCenter = currentRoom.transform.position;
@@ -196,5 +178,4 @@ public class RoomGenerator : MonoBehaviour
             default: return Vector2Int.zero;
         }
     }
-
 }
