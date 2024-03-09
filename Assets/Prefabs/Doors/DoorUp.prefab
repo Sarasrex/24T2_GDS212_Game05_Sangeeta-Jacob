@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6829449010853376624}
   - component: {fileID: 5541783588047471729}
   - component: {fileID: -5701291606011864739}
+  - component: {fileID: 8247548954526184246}
   m_Layer: 0
   m_Name: DoorUp
   m_TagString: Door
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.79, y: 0.68}
   m_EdgeRadius: 0
+--- !u!114 &8247548954526184246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3918314916307598567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f61adb0466a24c0478a0ba988ec05522, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorIndex: 0

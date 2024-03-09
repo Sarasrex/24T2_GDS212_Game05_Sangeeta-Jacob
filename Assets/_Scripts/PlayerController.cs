@@ -43,7 +43,12 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.CompareTag("Door"))
         {
-            roomGenerator.TransitionToNextRoom();
+            Door door = collision.GetComponent<Door>();
+            if (door != null && door.isOpen)
+            {
+                roomGenerator.TransitionToNextRoom(door.doorIndex);
+            }
         }
     }
+
 }
