@@ -157,12 +157,12 @@ public class RoomGenerator : MonoBehaviour
         minY += padding;
         maxY -= padding;
 
-        enemiesToSpawn = Random.Range(0, 4);
+        enemiesToSpawn = Random.Range(1, 4);
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Vector2 position = Vector2.zero;
             position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)) + (Vector2)room.transform.position;
-            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count - 1)], position, Quaternion.identity, room.transform);
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count)], position, Quaternion.identity, room.transform);
         }
     }
 

@@ -24,13 +24,21 @@ public class Bullet : MonoBehaviour
         if (collision.CompareTag("Enemy"))
         {
             GameObject enemy = collision.gameObject;
-            if (enemy.TryGetComponent<BatController>(out BatController controller))
+            if (enemy.TryGetComponent<BatController>(out BatController batController))
             {
-                controller.health -= playerStats.damage;
+                batController.health -= playerStats.damage;
+            }
+            else if (enemy.TryGetComponent<BlobController>(out BlobController blobController))
+            {
+                blobController.health -= playerStats.damage;
             }
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Rock"))
         {
             Destroy(gameObject);
         }

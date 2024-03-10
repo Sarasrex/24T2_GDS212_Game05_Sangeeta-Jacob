@@ -353,7 +353,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 192
+    m_Bits: 448
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -429,6 +429,7 @@ MonoBehaviour:
   rockPrefab: {fileID: 2273286152718371446, guid: beb05646a65fa8540b79b66ad9f01606, type: 3}
   enemyPrefabs:
   - {fileID: 4153595440789343162, guid: 768809113662cfd4c9d9e401232d2e8a, type: 3}
+  - {fileID: 2835482602822451986, guid: 1d8611e3fb63ac84a90b2ebd7a266678, type: 3}
 --- !u!4 &594818549
 Transform:
   m_ObjectHideFlags: 0
