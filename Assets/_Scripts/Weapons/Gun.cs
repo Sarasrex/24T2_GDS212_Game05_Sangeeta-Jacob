@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour, IWeapon
         if (Time.time - lastFireTime >= 1f / playerStats.firingSpeed)
         {
             var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
-            Vector2 combinedDirection = direction.normalized + playerRb.velocity.normalized;
+            Vector2 combinedDirection = direction + (playerRb.velocity.normalized/2);
             bullet.SetDirection(combinedDirection);
             lastFireTime = Time.time;
         }

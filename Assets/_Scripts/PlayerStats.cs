@@ -3,19 +3,27 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStats
 {
+    public int maxHealth;
     public int health;
-    public float damage;
+    public int damage;
     public float speed;
     public float firingSpeed;
     public int pierce;
 
-    public PlayerStats(int health = 6, float damage = 10, float speed = 5f, float firingSpeed = 2f, int pierce = 1)
+    public PlayerStats(int maxHealth = 6, int health = 6, int damage = 10, float speed = 5f, float firingSpeed = 2f, int pierce = 1)
     {
+        this.maxHealth = maxHealth;
         this.health = health;
         this.damage = damage;
         this.speed = speed;
         this.firingSpeed = firingSpeed;
         this.pierce = pierce;
+    }
+
+    public void ModifyMaxHealth(int amount)
+    {
+        maxHealth += amount;
+        maxHealth = Mathf.Max(maxHealth, 1);
     }
 
     public void ModifyHealth(int amount)
