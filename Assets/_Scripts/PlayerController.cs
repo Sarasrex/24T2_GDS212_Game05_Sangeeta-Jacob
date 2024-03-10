@@ -10,13 +10,13 @@ public class PlayerController : MonoBehaviour
 
     // Movement Variables
     [Header("Movement")]
-    [SerializeField] private float moveSpeed;
 
     // References
     [Header("References")]
     private Rigidbody2D rb;
     private RoomGenerator roomGenerator;
     private Animator animator;
+    public PlayerStats playerStats;
 
     private void Awake()
     {
@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         movement = new Vector2 (horizontal, vertical);
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = movement * playerStats.speed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
