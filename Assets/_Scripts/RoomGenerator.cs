@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.UIElements;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -26,6 +27,10 @@ public class RoomGenerator : MonoBehaviour
     [SerializeField] private GameObject rockPrefab;
     private int numberOfRocks;
     private List<Vector2> placedRockPositions = new List<Vector2>();
+
+    // Enemies
+    [SerializeField] private List<GameObject> enemyPrefabs = new List<GameObject>();
+    private int enemiesToSpawn;
 
 
     void Start()
@@ -134,6 +139,33 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
+    void SpawnEnemies(GameObject room)
+    {
+        float minX = float.MaxValue, maxX = float.MinValue, minY = float.MaxValue, maxY = float.MinValue;
+        foreach (Transform doorSpawnPoint in availableDoorSpawnPoints)
+        {
+            Vector3 position = doorSpawnPoint.position;
+            minX = Mathf.Min(minX, position.x);
+            maxX = Mathf.Max(maxX, position.x);
+            minY = Mathf.Min(minY, position.y);
+            maxY = Mathf.Max(maxY, position.y);
+        }
+
+        float padding = 3f;
+        minX += padding;
+        maxX -= padding;
+        minY += padding;
+        maxY -= padding;
+
+        enemiesToSpawn = Random.Range(0, 4);
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            Vector2 position = Vector2.zero;
+            position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)) + (Vector2)room.transform.position;
+            Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Count - 1)], position, Quaternion.identity, room.transform);
+        }
+    }
+
 
     int GetOppositeDoorIndex(int entryIndex)
     {
@@ -166,6 +198,7 @@ public class RoomGenerator : MonoBehaviour
 
             PlaceDoors(roomObject);
             PlaceRocks(roomObject);
+            SpawnEnemies(roomObject);
             roomCount++;
         }
         else

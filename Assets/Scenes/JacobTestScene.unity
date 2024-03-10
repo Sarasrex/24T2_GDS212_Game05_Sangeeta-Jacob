@@ -160,7 +160,7 @@ MonoBehaviour:
   playerStats:
     maxHealth: 6
     health: 6
-    damage: 0
+    damage: 10
     speed: 4
     firingSpeed: 2
     pierce: 1
@@ -380,8 +380,9 @@ MonoBehaviour:
   playerTransform: {fileID: 477071966}
   availableDoorSpawnPoints: []
   bossRoomGenerated: 0
-  oppositeDoorIndex: 0
   rockPrefab: {fileID: 2273286152718371446, guid: beb05646a65fa8540b79b66ad9f01606, type: 3}
+  enemyPrefabs:
+  - {fileID: 4153595440789343162, guid: 768809113662cfd4c9d9e401232d2e8a, type: 3}
 --- !u!4 &594818549
 Transform:
   m_ObjectHideFlags: 0
