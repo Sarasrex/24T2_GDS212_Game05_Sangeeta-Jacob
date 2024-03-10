@@ -9,16 +9,9 @@ public class Door : MonoBehaviour
 
     [SerializeField] private Sprite openSprite;
 
-    private RoomGenerator roomGenerator;
-
-    private void Awake()
-    {
-        roomGenerator = GameObject.FindWithTag("GameController").GetComponent<RoomGenerator>();
-    }
-
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
         {
             isOpen = true;
             GetComponent<SpriteRenderer>().sprite = openSprite;
