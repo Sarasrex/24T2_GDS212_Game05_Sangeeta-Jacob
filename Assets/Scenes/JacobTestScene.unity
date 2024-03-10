@@ -136,6 +136,7 @@ GameObject:
   - component: {fileID: 477071964}
   - component: {fileID: 477071963}
   - component: {fileID: 477071962}
+  - component: {fileID: 477071968}
   - component: {fileID: 477071967}
   m_Layer: 0
   m_Name: Player
@@ -156,7 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0a054327287864181ff0d8e2fdbeb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  playerStats:
+    health: 6
+    damage: 10
+    speed: 5
+    firingSpeed: 2
+    pierce: 1
 --- !u!61 &477071963
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -317,6 +323,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &477071968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477071961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5c7500256af25a459cda6006b204808, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 7718978050520930666, guid: 3da7ecf508dcd85438d23aa341f75d5f, type: 3}
 --- !u!1 &594818547
 GameObject:
   m_ObjectHideFlags: 0

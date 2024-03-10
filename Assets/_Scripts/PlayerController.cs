@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private RoomGenerator roomGenerator;
     private Animator animator;
     public PlayerStats playerStats;
+    [SerializeField] private IWeapon currentWeapon;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        currentWeapon = GetComponent<IWeapon>();
     }
 
     void Update()
@@ -55,6 +56,23 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("speed", 0);
         }
 
+        // Firing logic
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            currentWeapon.Fire(Vector2.right);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            currentWeapon.Fire(Vector2.left);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            currentWeapon.Fire(Vector2.up);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            currentWeapon.Fire(Vector2.down);
+        }
     }
 
     private void FixedUpdate()
