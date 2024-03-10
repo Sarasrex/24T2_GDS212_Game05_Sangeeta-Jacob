@@ -16,11 +16,17 @@ public class RoomGenerator : MonoBehaviour
     private int maxRooms = 5;
     public bool bossRoomGenerated = false;
     private int entryDoorIndex = -1; // -1 represents no entry
-    [SerializeField] private int oppositeDoorIndex;
+    private int oppositeDoorIndex;
 
     // Room storage
     private Dictionary<Vector2Int, RoomData> generatedRooms = new Dictionary<Vector2Int, RoomData>();
     private Vector2Int currentPosition = Vector2Int.zero;
+
+    // Rocks
+    [SerializeField] private GameObject rockPrefab;
+    private int numberOfRocks;
+    private List<Vector2> placedRockPositions = new List<Vector2>();
+
 
     void Start()
     {
@@ -70,6 +76,65 @@ public class RoomGenerator : MonoBehaviour
         }
     }
 
+    void PlaceRocks(GameObject room)
+    {
+        float minX = float.MaxValue, maxX = float.MinValue, minY = float.MaxValue, maxY = float.MinValue;
+        foreach (Transform doorSpawnPoint in availableDoorSpawnPoints)
+        {
+            Vector3 position = doorSpawnPoint.position;
+            minX = Mathf.Min(minX, position.x);
+            maxX = Mathf.Max(maxX, position.x);
+            minY = Mathf.Min(minY, position.y);
+            maxY = Mathf.Max(maxY, position.y);
+        }
+
+        float padding = 1.75f;
+        minX += padding;
+        maxX -= padding;
+        minY += padding;
+        maxY -= padding;
+
+        numberOfRocks = Random.Range(0, 12);
+        for (int i = 0; i < numberOfRocks; i++)
+        {
+            Vector2 position = Vector2.zero;
+            bool positionIsValid = false;
+
+            // Try to find a valid position that is not too close to the doors
+            int attempt = 0; // Prevent infinite loops
+            while (!positionIsValid && attempt < 100)
+            {
+                position = new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY)) + (Vector2)room.transform.position;
+                positionIsValid = true;
+
+                foreach (Transform doorSpawnPoint in availableDoorSpawnPoints)
+                {
+                    if (Vector2.Distance(position, doorSpawnPoint.position) < 1.75f) // Ensure rocks don't spawn too close to doors
+                    {
+                        positionIsValid = false;
+                        break;
+                    }
+                }
+                foreach (Vector2 rockPosition in placedRockPositions)
+                {
+                    if (Vector2.Distance(position, rockPosition) < 0.9f)
+                    {
+                        positionIsValid = false;
+                        break;
+                    }
+                }
+                attempt++;
+            }
+
+            if (positionIsValid)
+            {
+                Instantiate(rockPrefab, position, Quaternion.identity, room.transform);
+                placedRockPositions.Add(position);
+            }
+        }
+    }
+
+
     int GetOppositeDoorIndex(int entryIndex)
     {
         switch (entryIndex)
@@ -100,6 +165,7 @@ public class RoomGenerator : MonoBehaviour
             generatedRooms[nextPosition] = nextRoom;
 
             PlaceDoors(roomObject);
+            PlaceRocks(roomObject);
             roomCount++;
         }
         else

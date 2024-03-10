@@ -18,13 +18,7 @@ public class Door : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R) && !roomGenerator.bossRoomGenerated)
-        {
-            isOpen = true;
-            GetComponent<SpriteRenderer>().sprite = openSprite;
-        }
-
-        if (gameObject.CompareTag("BossDoor") && Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             isOpen = true;
             GetComponent<SpriteRenderer>().sprite = openSprite;
