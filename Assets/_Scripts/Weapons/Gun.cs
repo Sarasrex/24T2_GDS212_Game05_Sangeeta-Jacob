@@ -5,10 +5,12 @@ public class Gun : MonoBehaviour, IWeapon
     [SerializeField] private GameObject bulletPrefab;
     private float lastFireTime = 0;
     private PlayerStats playerStats;
+    private Rigidbody2D playerRb;
 
     private void Awake()
     {
         playerStats = GetComponent<PlayerController>().playerStats;
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     public GameObject BulletPrefab
@@ -21,8 +23,9 @@ public class Gun : MonoBehaviour, IWeapon
     {
         if (Time.time - lastFireTime >= 1f / playerStats.firingSpeed)
         {
-            Instantiate(bulletPrefab, transform.position, Quaternion.identity)
-                .GetComponent<Bullet>().SetDirection(direction);
+            var bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity).GetComponent<Bullet>();
+            Vector2 combinedDirection = direction.normalized + playerRb.velocity.normalized;
+            bullet.SetDirection(combinedDirection);
             lastFireTime = Time.time;
         }
     }
