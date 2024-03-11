@@ -45,7 +45,7 @@ public class RoomGenerator : MonoBehaviour
         Transform[] allChildren = roomPrefab.GetComponentsInChildren<Transform>();
         foreach (Transform child in allChildren)
         {
-            if (child != roomPrefab.transform && !child.CompareTag("Wall"))
+            if (child.CompareTag("SpawnPoint"))
             {
                 availableDoorSpawnPoints.Add(child);
             }

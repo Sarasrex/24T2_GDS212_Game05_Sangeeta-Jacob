@@ -10,6 +10,9 @@ TagManager:
   - Enemy
   - Rock
   - UIManager
+  - SpawnPoint
+  - Slime
+  - EnemyProjectile
   layers:
   - Default
   - TransparentFX
@@ -22,7 +25,7 @@ TagManager:
   - Bat
   - Door
   - Bullet
-  - 
+  - Slime
   - 
   - 
   - 

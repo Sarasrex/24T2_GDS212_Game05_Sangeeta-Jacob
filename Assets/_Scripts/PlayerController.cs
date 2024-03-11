@@ -99,6 +99,18 @@ public class PlayerController : MonoBehaviour
                 roomGenerator.TransitionToBossRoom(door.doorIndex);
             }
         }
+
+        else if (collision.CompareTag("Slime"))
+        {
+            playerStats.speed /= 1.5f;
+        }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Slime"))
+        {
+            playerStats.speed *= 1.5f;
+        }
+    }
 }
