@@ -32,6 +32,10 @@ public class Bullet : MonoBehaviour
             {
                 blobController.health -= playerStats.damage;
             }
+            else if (enemy.TryGetComponent<EarthWormController>(out EarthWormController earthWormController))
+            {
+                earthWormController.health -= playerStats.damage;
+            }
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Wall"))

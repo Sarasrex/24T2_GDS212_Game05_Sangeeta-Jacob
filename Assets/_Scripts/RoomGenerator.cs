@@ -12,7 +12,7 @@ public class RoomGenerator : MonoBehaviour
     public Transform playerTransform;
 
     private GameObject currentRoom;
-    [SerializeField] private List<Transform> availableDoorSpawnPoints = new List<Transform>();
+    public List<Transform> availableDoorSpawnPoints = new List<Transform>();
     private int roomCount = 0;
     private int maxRooms = 5;
     public bool bossRoomGenerated = false;
