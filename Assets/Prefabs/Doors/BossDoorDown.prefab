@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3810224842423738614}
   - component: {fileID: 2761471191219671983}
   - component: {fileID: 907530176370393731}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossDoorDown
   m_TagString: BossDoor
   m_Icon: {fileID: 0}

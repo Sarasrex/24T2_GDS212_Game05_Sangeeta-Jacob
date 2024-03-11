@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7139716752315263380}
   - component: {fileID: -1380055585159740960}
   - component: {fileID: -2929794303666267275}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BossDoorRight
   m_TagString: BossDoor
   m_Icon: {fileID: 0}
@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
+  isOpen: 0
+  openSprite: {fileID: 0}

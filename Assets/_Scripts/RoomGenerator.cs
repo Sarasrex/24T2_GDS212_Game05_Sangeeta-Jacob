@@ -199,6 +199,7 @@ public class RoomGenerator : MonoBehaviour
             PlaceDoors(roomObject);
             PlaceRocks(roomObject);
             SpawnEnemies(roomObject);
+            MirrorPlayerPosition(doorIndex);
             roomCount++;
         }
         else
@@ -220,8 +221,6 @@ public class RoomGenerator : MonoBehaviour
 
         currentRoom = nextRoom.RoomObject;
         currentPosition = nextPosition;
-
-        MirrorPlayerPosition(doorIndex);
 
         if (roomCount == maxRooms && !bossRoomGenerated)
         {
