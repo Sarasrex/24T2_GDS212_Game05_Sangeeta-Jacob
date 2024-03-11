@@ -18,12 +18,14 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     public PlayerStats playerStats;
     [SerializeField] private IWeapon currentWeapon;
+    private HealthUI healthUI;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         roomGenerator = GameObject.FindWithTag("GameController").GetComponent<RoomGenerator>();
+        healthUI = GameObject.FindWithTag("UIManager").GetComponent<HealthUI>();
     }
 
     void Start()
@@ -73,6 +75,8 @@ public class PlayerController : MonoBehaviour
         {
             currentWeapon.Fire(Vector2.down);
         }
+
+        healthUI.UpdateHealth(playerStats.health);
     }
 
     private void FixedUpdate()
