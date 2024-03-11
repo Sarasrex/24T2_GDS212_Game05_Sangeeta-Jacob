@@ -65,7 +65,7 @@ public class BlobController : MonoBehaviour
 
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !isOnCooldown)
         {
             GameObject player = collision.gameObject;
             player.GetComponent<PlayerController>().playerStats.ModifyHealth(-damage);

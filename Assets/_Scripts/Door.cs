@@ -17,9 +17,4 @@ public class Door : MonoBehaviour
             GetComponent<SpriteRenderer>().sprite = openSprite;
         }
     }
-
-    public void Initialize(int index)
-    {
-        doorIndex = index;
-    }
 }
