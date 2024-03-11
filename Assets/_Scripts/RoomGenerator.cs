@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class RoomGenerator : MonoBehaviour
 {
     public GameObject roomPrefab;
+    [SerializeField] private List<GameObject> bossRoomPrefabs = new List<GameObject>();
     public GameObject[] doorPrefabs; // Array of door prefabs (top, bottom, left, right)
     public GameObject[] bossDoorPrefabs; // Array of boss door prefabs (top, bottom, left, right)
     public Transform playerTransform;
@@ -185,7 +186,7 @@ public class RoomGenerator : MonoBehaviour
 
     public void TransitionToNextRoom(int doorIndex)
     {
-        Vector2Int direction = GetDirectionFromDoorIndex(doorIndex); // Implement this based on your game's logic
+        Vector2Int direction = GetDirectionFromDoorIndex(doorIndex);
         Vector2Int nextPosition = currentPosition + direction;
         entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
 
@@ -224,7 +225,55 @@ public class RoomGenerator : MonoBehaviour
 
         if (roomCount == maxRooms && !bossRoomGenerated)
         {
-            GenerateBossRoom();
+            GenerateBossRoomDoor();
+        }
+    }
+
+    public void TransitionToBossRoom(int doorIndex)
+    {
+        Vector2Int direction = GetDirectionFromDoorIndex(doorIndex);
+        Vector2Int nextPosition = currentPosition + direction;
+        entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
+
+        if (!generatedRooms.TryGetValue(nextPosition, out RoomData nextRoom))
+        {
+            // Room doesn't exist, create and store it
+            GameObject roomObject = Instantiate(bossRoomPrefabs[Random.Range(0, bossRoomPrefabs.Count)], Vector3.zero, Quaternion.identity);
+            nextRoom = new RoomData(nextPosition, roomObject);
+            generatedRooms[nextPosition] = nextRoom;
+
+            if (entryDoorIndex >= 0)
+            {
+                Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
+                Instantiate(bossDoorPrefabs[entryDoorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, currentRoom.transform); // Door player just entered from
+            }
+
+            MirrorPlayerPosition(doorIndex);
+            roomCount++;
+        }
+        else
+        {
+            nextRoom = generatedRooms[nextPosition];
+            if (currentRoom != null) currentRoom.SetActive(false);
+            nextRoom.RoomObject.SetActive(true);
+
+            currentRoom = nextRoom.RoomObject;
+            currentPosition = nextPosition;
+
+            MirrorPlayerPosition(doorIndex);
+
+            return;
+        }
+
+        if (currentRoom != null) currentRoom.SetActive(false);
+        nextRoom.RoomObject.SetActive(true);
+
+        currentRoom = nextRoom.RoomObject;
+        currentPosition = nextPosition;
+
+        if (roomCount == maxRooms && !bossRoomGenerated)
+        {
+            GenerateBossRoomDoor();
         }
     }
 
@@ -251,8 +300,7 @@ public class RoomGenerator : MonoBehaviour
         playerTransform.position = roomCenter + mirroredPositionRelativeToCenter + offset;
     }
 
-
-    public void GenerateBossRoom()
+    public void GenerateBossRoomDoor()
     {
         bossRoomGenerated = true;
         Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];

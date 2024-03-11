@@ -5,6 +5,7 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     public int doorIndex;
+    public bool isBossDoor;
     public bool isOpen = false;
 
     [SerializeField] private Sprite openSprite;

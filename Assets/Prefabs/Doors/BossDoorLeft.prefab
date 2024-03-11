@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -2894647010882152673}
   m_Layer: 9
   m_Name: BossDoorLeft
-  m_TagString: BossDoor
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,5 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 0
+  isBossDoor: 1
   isOpen: 0
   openSprite: {fileID: -1213119726, guid: 70c577544aad0234caaed6fe47708598, type: 3}

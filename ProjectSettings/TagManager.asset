@@ -6,7 +6,6 @@ TagManager:
   tags:
   - Background
   - Door
-  - BossDoor
   - Wall
   - Enemy
   - Rock
