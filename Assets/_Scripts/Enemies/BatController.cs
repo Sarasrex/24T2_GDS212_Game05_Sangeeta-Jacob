@@ -63,7 +63,7 @@ public class BatController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !isOnCooldown)
+        if (collision.CompareTag("Player"))
         {
             GameObject player = collision.gameObject;
             player.GetComponent<PlayerController>().playerStats.ModifyHealth(-damage);

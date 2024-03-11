@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 318912a5f4094c34cb7514c3dcaafe0b
+guid: 8ab640bb39104fc429a9dec83f7ff6df
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 48
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Heart_Left&RightHalves_0
+      name: Heart_0
       rect:
         serializedVersion: 2
         x: 88
-        y: 771
+        y: 274
         width: 61
-        height: 51
+        height: 48
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,50 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c4b20b9f7fcf4f046bd19f861d478012
-      internalID: 498849044
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Heart_Left&RightHalves_1
-      rect:
-        serializedVersion: 2
-        x: 588
-        y: 771
-        width: 61
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 28db533a489e8414ca975015a9e9764b
-      internalID: -88855624
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Heart_Left&RightHalves_2
-      rect:
-        serializedVersion: 2
-        x: 88
-        y: 271
-        width: 61
-        height: 51
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 689730c51af3da5498d574a00a429429
-      internalID: -1342025470
+      spriteID: d9281e0af1b509042b1f5613a3a61b03
+      internalID: 128250070
       vertices: []
       indices: 
       edges: []
@@ -209,9 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Heart_Left&RightHalves_0: 498849044
-      Heart_Left&RightHalves_1: -88855624
-      Heart_Left&RightHalves_2: -1342025470
+      Heart_0: 128250070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
