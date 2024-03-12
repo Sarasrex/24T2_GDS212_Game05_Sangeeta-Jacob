@@ -23,6 +23,7 @@ public class RoomGenerator : MonoBehaviour
     // Room storage
     private Dictionary<Vector2Int, RoomData> generatedRooms = new Dictionary<Vector2Int, RoomData>();
     private Vector2Int currentPosition = Vector2Int.zero;
+    private Vector2Int nextPosition;
 
     // Rocks
     [SerializeField] private GameObject rockPrefab;
@@ -187,7 +188,7 @@ public class RoomGenerator : MonoBehaviour
     public void TransitionToNextRoom(int doorIndex)
     {
         Vector2Int direction = GetDirectionFromDoorIndex(doorIndex);
-        Vector2Int nextPosition = currentPosition + direction;
+        nextPosition = currentPosition + direction;
         entryDoorIndex = GetOppositeDoorIndex(doorIndex); // Set the opposite door index for entry in the next room
 
         if (!generatedRooms.TryGetValue(nextPosition, out RoomData nextRoom))
