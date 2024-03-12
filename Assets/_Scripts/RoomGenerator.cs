@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine.UIElements;
+using System.Runtime.CompilerServices;
 
 public class RoomGenerator : MonoBehaviour
 {
@@ -64,22 +65,77 @@ public class RoomGenerator : MonoBehaviour
 
     void PlaceDoors(GameObject room)
     {
-        if (entryDoorIndex >= 0)
+        List<Vector2Int> adjacentCoords = new List<Vector2Int>
         {
-            Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
-            Instantiate(doorPrefabs[entryDoorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform); // Door player just entered from
+            new Vector2Int(nextPosition.x, nextPosition.y + 1),
+            new Vector2Int(nextPosition.x, nextPosition.y - 1),
+            new Vector2Int(nextPosition.x - 1, nextPosition.y),
+            new Vector2Int(nextPosition.x + 1, nextPosition.y)
+        };
+
+        List<Vector2Int> adjacentRoomPositions = new List<Vector2Int>();
+
+        foreach (Vector2Int coords in  adjacentCoords)
+        {
+            if (generatedRooms.TryGetValue(coords, out RoomData nextRoom))
+            {
+                adjacentRoomPositions.Add(coords);
+            }
+        }
+
+        Transform doorSpawnPoint;
+        List<int> remainingIndices = new List<int>
+        {
+            0,
+            1,
+            2,
+            3
+        };
+        foreach (Vector2Int adjacentRoomPosition in adjacentRoomPositions)
+        {
+            if (adjacentRoomPosition == new Vector2Int(nextPosition.x, nextPosition.y +1))
+            {
+                doorSpawnPoint = availableDoorSpawnPoints[0];
+                Instantiate(doorPrefabs[0], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
+                remainingIndices.Remove(0);
+            }
+            else if (adjacentRoomPosition == new Vector2Int(nextPosition.x, nextPosition.y - 1))
+            {
+                doorSpawnPoint = availableDoorSpawnPoints[1];
+                Instantiate(doorPrefabs[1], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
+                remainingIndices.Remove(1);
+            }
+            else if (adjacentRoomPosition == new Vector2Int(nextPosition.x -1, nextPosition.y))
+            {
+                doorSpawnPoint = availableDoorSpawnPoints[2];
+                Instantiate(doorPrefabs[2], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
+                remainingIndices.Remove(2);
+            }
+            else if (adjacentRoomPosition == new Vector2Int(nextPosition.x + 1, nextPosition.y))
+            {
+                doorSpawnPoint = availableDoorSpawnPoints[3];
+                Instantiate(doorPrefabs[3], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
+                remainingIndices.Remove(3);
+            }
         }
 
         if (roomCount != maxRooms - 1)
         {
-            int randomDoorIndex;
-            do
+            if (adjacentRoomPositions.Count < 4 && remainingIndices.Count >= 1)
             {
-                randomDoorIndex = Random.Range(0, availableDoorSpawnPoints.Count);
+                int randomIndex = Random.Range(0, remainingIndices.Count);
+                int doorIndex = remainingIndices[randomIndex];
+                doorSpawnPoint = availableDoorSpawnPoints[doorIndex];
+                Instantiate(doorPrefabs[doorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
             }
-            while (entryDoorIndex >= 0 && randomDoorIndex == entryDoorIndex);
+        }
 
-            Instantiate(doorPrefabs[randomDoorIndex], availableDoorSpawnPoints[randomDoorIndex].position, availableDoorSpawnPoints[randomDoorIndex].rotation, room.transform);
+        if (roomCount == maxRooms - 1)
+        {
+            int randomIndex = Random.Range(0, remainingIndices.Count);
+            int doorIndex = remainingIndices[randomIndex];
+            doorSpawnPoint = availableDoorSpawnPoints[doorIndex];
+            Instantiate(bossDoorPrefabs[doorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, room.transform);
         }
     }
 
@@ -159,7 +215,7 @@ public class RoomGenerator : MonoBehaviour
         minY += padding;
         maxY -= padding;
 
-        enemiesToSpawn = Random.Range(1, 4);
+        enemiesToSpawn = Random.Range(0, 1);
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Vector2 position = Vector2.zero;
@@ -223,11 +279,6 @@ public class RoomGenerator : MonoBehaviour
 
         currentRoom = nextRoom.RoomObject;
         currentPosition = nextPosition;
-
-        if (roomCount == maxRooms && !bossRoomGenerated)
-        {
-            GenerateBossRoomDoor();
-        }
     }
 
     public void TransitionToBossRoom(int doorIndex)
@@ -271,11 +322,6 @@ public class RoomGenerator : MonoBehaviour
 
         currentRoom = nextRoom.RoomObject;
         currentPosition = nextPosition;
-
-        if (roomCount == maxRooms && !bossRoomGenerated)
-        {
-            GenerateBossRoomDoor();
-        }
     }
 
     // Sangeeta is a nerd
@@ -294,24 +340,11 @@ public class RoomGenerator : MonoBehaviour
             case 0: offset = new Vector3(0, 0.2f, 0); break;
             case 1: offset = new Vector3(0, -0.2f, 0); break;
             case 2: offset = new Vector3(-0.2f, 0, 0); break;
-            case 3: offset = new Vector3(0.2f, 0, 0); break;
+            case 3: offset = new Vector3(0.3f, 0, 0); break;
             default: offset = Vector3.zero; break;
         }
 
         playerTransform.position = roomCenter + mirroredPositionRelativeToCenter + offset;
-    }
-
-    public void GenerateBossRoomDoor()
-    {
-        bossRoomGenerated = true;
-        Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
-        int randomDoorIndex;
-        do
-        {
-            randomDoorIndex = Random.Range(0, availableDoorSpawnPoints.Count);
-        }
-        while (entryDoorIndex >= 0 && randomDoorIndex == entryDoorIndex);
-        Instantiate(bossDoorPrefabs[randomDoorIndex], availableDoorSpawnPoints[randomDoorIndex].position, availableDoorSpawnPoints[randomDoorIndex].rotation, currentRoom.transform);
     }
 
     private Vector2Int GetDirectionFromDoorIndex(int doorIndex)
