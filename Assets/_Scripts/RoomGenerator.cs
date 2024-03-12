@@ -245,7 +245,7 @@ public class RoomGenerator : MonoBehaviour
             if (entryDoorIndex >= 0)
             {
                 Transform doorSpawnPoint = availableDoorSpawnPoints[entryDoorIndex];
-                Instantiate(bossDoorPrefabs[entryDoorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, currentRoom.transform); // Door player just entered from
+                Instantiate(bossDoorPrefabs[entryDoorIndex], doorSpawnPoint.position, doorSpawnPoint.rotation, nextRoom.RoomObject.transform); // Door player just entered from
             }
 
             MirrorPlayerPosition(doorIndex);
