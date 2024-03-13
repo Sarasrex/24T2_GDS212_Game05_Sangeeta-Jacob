@@ -36,6 +36,7 @@ public class CannonBall : MonoBehaviour
     {
         rb.velocity = Vector2.zero;
         gameObject.transform.localScale = Vector3.one;
+        ScreenShakeController.Instance.StartShake(0.25f, 0.15f);
         Animator animator = GetComponent<Animator>();
         if (animator)
         {
