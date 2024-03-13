@@ -139,10 +139,10 @@ TextureImporter:
       name: Projectile00_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 75
-        width: 1
-        height: 1
+        x: 205
+        y: 323
+        width: 12
+        height: 12
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b970a7cdc96884f43a00a0174a838998
-      internalID: 57303632
+      spriteID: 843ae076bbc91ee4e80b8af724245f62
+      internalID: 1336444775
       vertices: []
       indices: 
       edges: []
@@ -167,7 +167,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Projectile00_0: 57303632
+      Projectile00_0: 1336444775
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

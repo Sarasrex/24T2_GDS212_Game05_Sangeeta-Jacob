@@ -215,7 +215,7 @@ public class RoomGenerator : MonoBehaviour
         minY += padding;
         maxY -= padding;
 
-        enemiesToSpawn = Random.Range(0, 1);
+        enemiesToSpawn = Random.Range(1, 4);
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Vector2 position = Vector2.zero;

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6f977ccea310de443a39647d6d054175
+guid: c5b462a025616014698f7bcb06db16b8
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -136,13 +136,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Projectile09_0
+      name: Projectile00_Cannon_Shockwave_0
       rect:
         serializedVersion: 2
-        x: 25
-        y: 75
-        width: 1
-        height: 1
+        x: 150
+        y: 4407
+        width: 129
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -150,8 +150,134 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 008eb310cce7d3e438c3deb07ba36c53
-      internalID: -828449436
+      spriteID: 0da08dbdab3d03c4d8bce7026974c084
+      internalID: -160248331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_1
+      rect:
+        serializedVersion: 2
+        x: 1671
+        y: 4398
+        width: 162
+        height: 72
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b6f6d65a6017444b9a0af2e4dc7e357
+      internalID: 40313764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_2
+      rect:
+        serializedVersion: 2
+        x: 3195
+        y: 4389
+        width: 171
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0804a5413d7b18c40876a4570bf8b468
+      internalID: -1726895877
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_3
+      rect:
+        serializedVersion: 2
+        x: 126
+        y: 2841
+        width: 165
+        height: 105
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a61756653633eff4c831b035e225849d
+      internalID: 547687331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_4
+      rect:
+        serializedVersion: 2
+        x: 1647
+        y: 2834
+        width: 210
+        height: 109
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9325b5fb81160b458fb55d12f75c84a
+      internalID: 1294175807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_5
+      rect:
+        serializedVersion: 2
+        x: 3183
+        y: 2835
+        width: 210
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7a16a466155d67f4e94091883f9158a3
+      internalID: -818008065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Projectile00_Cannon_Shockwave_6
+      rect:
+        serializedVersion: 2
+        x: 111
+        y: 1299
+        width: 210
+        height: 108
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0878ec2b36e6f243be6325c4be92a2e
+      internalID: -1815723748
       vertices: []
       indices: 
       edges: []
@@ -167,7 +293,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Projectile09_0: -828449436
+      Projectile00_Cannon_Shockwave_0: -160248331
+      Projectile00_Cannon_Shockwave_1: 40313764
+      Projectile00_Cannon_Shockwave_2: -1726895877
+      Projectile00_Cannon_Shockwave_3: 547687331
+      Projectile00_Cannon_Shockwave_4: 1294175807
+      Projectile00_Cannon_Shockwave_5: -818008065
+      Projectile00_Cannon_Shockwave_6: -1815723748
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
