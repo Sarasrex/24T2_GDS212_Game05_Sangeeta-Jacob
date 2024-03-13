@@ -1,0 +1,52 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class CannonBall : MonoBehaviour
+{
+    public float speed = 10f;
+    private PlayerStats playerStats;
+
+    private void Awake()
+    {
+        playerStats = GameObject.FindWithTag("Player").GetComponent<PlayerController>().playerStats;
+    }
+
+    public void SetDirection(Vector2 direction)
+    {
+        Rigidbody2D rb = GetComponent<Rigidbody2D>();
+        rb.velocity = direction.normalized * speed;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle + 180));
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Enemy"))
+        {
+            GameObject enemy = collision.gameObject;
+            if (enemy.TryGetComponent<BatController>(out BatController batController))
+            {
+                batController.health -= playerStats.damage;
+            }
+            else if (enemy.TryGetComponent<BlobController>(out BlobController blobController))
+            {
+                blobController.health -= playerStats.damage;
+            }
+            else if (enemy.TryGetComponent<EarthWormController>(out EarthWormController earthWormController))
+            {
+                earthWormController.health -= playerStats.damage;
+            }
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Wall"))
+        {
+            Destroy(gameObject);
+        }
+        else if (collision.CompareTag("Rock"))
+        {
+            Destroy(gameObject);
+        }
+    }
+}
