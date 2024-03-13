@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class EarthWormController : MonoBehaviour
 {
@@ -7,11 +8,17 @@ public class EarthWormController : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject projectilePrefab;
     private Vector3 playerPosition;
+    private List<Collider2D> colliders = new List<Collider2D>();
+    private Rigidbody2D rb;
 
     public int health;
     public int damage;
     [SerializeField] private float attackCooldown = 5f;
     private float nextAttackTime = 0f;
+
+    public bool isKnockedBack;
+    private float knockedBackTime = 0.5f;
+    private float knockedBackTimer = 0f;
 
     private RoomGenerator roomGenerator;
 
@@ -20,6 +27,12 @@ public class EarthWormController : MonoBehaviour
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         roomGenerator = GameObject.FindWithTag("GameController").GetComponent<RoomGenerator>();
+        rb = GetComponent<Rigidbody2D>();
+
+        foreach (Collider2D collider in GetComponents<Collider2D>())
+        {
+            colliders.Add(collider);
+        }
     }
 
     private void Start()
@@ -54,10 +67,26 @@ public class EarthWormController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (isKnockedBack)
+        {
+            knockedBackTimer += Time.deltaTime;
+            if (knockedBackTimer >= knockedBackTime)
+            {
+                isKnockedBack = false;
+                knockedBackTimer = 0f;
+                rb.velocity = Vector3.Lerp(rb.velocity, Vector3.zero, 0.25f);
+            }
+        }
     }
 
     private IEnumerator AttackSequence()
     {
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = true;
+        }
+
         Vector2 spawnPosition = CalculateRandomPosition();
         transform.position = spawnPosition;
         
@@ -73,6 +102,13 @@ public class EarthWormController : MonoBehaviour
 
         yield return new WaitForSeconds(1);
         spriteRenderer.enabled = false;
+        
+        foreach (Collider2D collider in colliders)
+        {
+            collider.enabled = false;
+        }
+
+        rb.velocity = Vector3.zero;
     }
 
     private void FireProjectile()

@@ -194,4 +194,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  range: 5
+  range: 3
+  shockwaveRadius: 1.25
+  shockwaveDamage: 15
+  shockwaveForce: 75

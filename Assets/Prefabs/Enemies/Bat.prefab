@@ -240,6 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 15
-  moveSpeed: 3
+  moveSpeed: 2.5
   damage: 1
   damageCooldown: 1.5

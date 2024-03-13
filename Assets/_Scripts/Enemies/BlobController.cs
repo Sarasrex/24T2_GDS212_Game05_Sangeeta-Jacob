@@ -15,6 +15,10 @@ public class BlobController : MonoBehaviour
     private float damageCooldownTimer = 0f;
     private bool isOnCooldown = false;
 
+    public bool isKnockedBack;
+    private float knockedBackTime = 0.5f;
+    private float knockedBackTimer = 0f;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -56,11 +60,24 @@ public class BlobController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if (isKnockedBack)
+        {
+            knockedBackTimer += Time.deltaTime;
+            if (knockedBackTimer >= knockedBackTime)
+            {
+                isKnockedBack = false;
+                knockedBackTimer = 0f;
+            }
+        }
     }
 
     void FixedUpdate()
     {
-        rb.velocity = movement * moveSpeed;
+        if (!isKnockedBack)
+        {
+            rb.velocity = movement * moveSpeed;
+        }
     }
 
     private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
