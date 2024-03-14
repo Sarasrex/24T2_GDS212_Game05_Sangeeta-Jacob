@@ -150,8 +150,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 002aaf6eb34dbc94caa31e31d24880d2
-      internalID: 30609946
+      spriteID: 992322d6cbd201546a9444b5a2aef749
+      internalID: 1877077517
       vertices: []
       indices: 
       edges: []
@@ -171,8 +171,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 922ab754061839041aa7c8ee9aa69b56
-      internalID: -1313129543
+      spriteID: 8f26272d45f3e2447b60d2765c71428d
+      internalID: -774832982
       vertices: []
       indices: 
       edges: []
@@ -192,8 +192,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32975abdecb549649b18fca5674a2be2
-      internalID: -1441191638
+      spriteID: 5ac6f13f903409e418d3b6fab6baebf1
+      internalID: 230760542
       vertices: []
       indices: 
       edges: []
@@ -202,8 +202,8 @@ TextureImporter:
       name: Boss_Slime_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 4096
+        x: 6144
+        y: 6144
         width: 2048
         height: 2048
       alignment: 0
@@ -213,8 +213,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f43f4eac9c2b3e640acf04b94d7bdbdd
-      internalID: 322006830
+      spriteID: c25c32d7de436074a8c78b198d43880a
+      internalID: 1676408819
       vertices: []
       indices: 
       edges: []
@@ -223,6 +223,27 @@ TextureImporter:
       name: Boss_Slime_4
       rect:
         serializedVersion: 2
+        x: 0
+        y: 4096
+        width: 2048
+        height: 2048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 77107b0804fbe444b965b6abc11a3550
+      internalID: -1900849832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Slime_5
+      rect:
+        serializedVersion: 2
         x: 2048
         y: 4096
         width: 2048
@@ -234,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a20d772f98697cf49b569d9c2b9f9f44
-      internalID: -1131131860
+      spriteID: d04b5f70c78b8744ba7db7d057b8d48c
+      internalID: 1990724167
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Slime_5
+      name: Boss_Slime_6
       rect:
         serializedVersion: 2
         x: 4096
@@ -255,14 +276,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0071a83afeb1ef45874a468391ea229
-      internalID: -432275306
+      spriteID: cbc43016260e65c43a69bf6afc145167
+      internalID: -1127660674
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Slime_6
+      name: Boss_Slime_7
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 4096
+        width: 2048
+        height: 2048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0c6bc54c2b95cb48837f6e6d7d05743
+      internalID: -160517762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Slime_8
       rect:
         serializedVersion: 2
         x: 0
@@ -276,14 +318,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 87e2995d61245b540abb3386ff8c9ef7
-      internalID: 2114526945
+      spriteID: 0f3e6ba0a1d73354b9fb2c39d1d40bdd
+      internalID: 899073016
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Slime_7
+      name: Boss_Slime_9
       rect:
         serializedVersion: 2
         x: 2048
@@ -297,14 +339,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d839096d680b3f842bc36c23ffde3ae6
-      internalID: -495181982
+      spriteID: 923ff331dd4cc804a8d0100f6eab4128
+      internalID: -1664187812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Slime_8
+      name: Boss_Slime_10
       rect:
         serializedVersion: 2
         x: 4096
@@ -318,14 +360,35 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5c1dd3a7921c33f4fb79ec0dbd033a76
-      internalID: 1395807632
+      spriteID: 4973e83ff1355cd4b898224cb88620c5
+      internalID: 873875023
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Boss_Slime_9
+      name: Boss_Slime_11
+      rect:
+        serializedVersion: 2
+        x: 6144
+        y: 2048
+        width: 2048
+        height: 2048
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b83ae4fe1708aa44b8ab507ba8b2aabf
+      internalID: 119763331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Boss_Slime_12
       rect:
         serializedVersion: 2
         x: 0
@@ -339,8 +402,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dd7a76e2bab17d342abf7de57c463802
-      internalID: 1707555183
+      spriteID: 7f94c58b0dd656048b6f060af0031938
+      internalID: 258384500
       vertices: []
       indices: 
       edges: []
@@ -356,16 +419,19 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Boss_Slime_0: 30609946
-      Boss_Slime_1: -1313129543
-      Boss_Slime_2: -1441191638
-      Boss_Slime_3: 322006830
-      Boss_Slime_4: -1131131860
-      Boss_Slime_5: -432275306
-      Boss_Slime_6: 2114526945
-      Boss_Slime_7: -495181982
-      Boss_Slime_8: 1395807632
-      Boss_Slime_9: 1707555183
+      Boss_Slime_0: 1877077517
+      Boss_Slime_1: -774832982
+      Boss_Slime_10: 873875023
+      Boss_Slime_11: 119763331
+      Boss_Slime_12: 258384500
+      Boss_Slime_2: 230760542
+      Boss_Slime_3: 1676408819
+      Boss_Slime_4: -1900849832
+      Boss_Slime_5: 1990724167
+      Boss_Slime_6: -1127660674
+      Boss_Slime_7: -160517762
+      Boss_Slime_8: 899073016
+      Boss_Slime_9: -1664187812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
