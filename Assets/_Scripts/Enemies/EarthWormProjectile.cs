@@ -25,6 +25,7 @@ public class EarthWormProjectile : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             playerStats.ModifyHealth(-damage);
+            DamageFlashManager.Flash();
             Destroy(gameObject);
         }
         else if (collision.CompareTag("Rock"))

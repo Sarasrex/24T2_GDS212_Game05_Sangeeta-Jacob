@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossSlimeController : MonoBehaviour
 {
@@ -48,9 +49,13 @@ public class BossSlimeController : MonoBehaviour
                     DecideNextAction();
                     break;
                 case State.Jumping:
-                    if (transform.localScale == Vector3.one)
+                    if (transform.localScale == new Vector3(1.5f, 1.5f, 1))
                     {
                         transform.position = new Vector3(transform.position.x - offsetDistance, transform.position.y, transform.position.z);
+                    }
+                    else if (transform.localScale == new Vector3(-1.5f, 1.5f, 1))
+                    {
+                        transform.position = new Vector3(transform.position.x + offsetDistance, transform.position.y, transform.position.z);
                     }
                     animator.SetTrigger("Jump");
                     jumpDirection = (playerTransform.position - transform.position).normalized;

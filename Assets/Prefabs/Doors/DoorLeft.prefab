@@ -144,5 +144,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorIndex: 2
+  isBossDoor: 0
   isOpen: 0
   openSprite: {fileID: -194467938, guid: c9e95a763131c1b49a082e21f8781c69, type: 3}

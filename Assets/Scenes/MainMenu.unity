@@ -1215,7 +1215,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: The Binding of Quintus Horatius Flaccus
+  m_text: <wave>The Binding of <rainb>Quintus Horatius Flaccus</>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
   m_sharedMaterial: {fileID: 2140032, guid: dc36b3fdc14f47ebb36fd484a67e268a, type: 2}
@@ -1307,14 +1307,14 @@ MonoBehaviour:
   typewriterStartsAutomatically: 0
   animationLoop: 0
   timeScale: 0
-  _text: <bounce> The Binding of Quintus Horatius Flaccus </>
+  _text: <wave>The Binding of <rainb>Quintus Horatius Flaccus</>
   useDynamicScaling: 1
   referenceFontSize: 10
   isResettingTimeOnNewText: 1
   useDefaultDatabases: 1
-  databaseBehaviors: {fileID: 0}
-  databaseAppearances: {fileID: 0}
-  databaseActions: {fileID: 0}
+  databaseBehaviors: {fileID: 11400000, guid: 0db5cbd56213ca34b84ae2826ec3ed80, type: 2}
+  databaseAppearances: {fileID: 11400000, guid: 6f0311aa564fa2044a0b09822073fcb7, type: 2}
+  databaseActions: {fileID: 11400000, guid: 8c72797349e932b48b9bb2205b9584f2, type: 2}
   defaultAppearancesTags:
   - size
   defaultDisappearancesTags:
@@ -1400,7 +1400,6 @@ GameObject:
   - component: {fileID: 1713675602}
   - component: {fileID: 1713675604}
   - component: {fileID: 1713675603}
-  - component: {fileID: 1713675605}
   m_Layer: 5
   m_Name: Image
   m_TagString: Untagged
@@ -1465,27 +1464,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1713675601}
   m_CullTransparentMesh: 1
---- !u!95 &1713675605
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713675601}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 0f2c1f5e83892af44a31a8ab915a3325, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1971933276
 GameObject:
   m_ObjectHideFlags: 0

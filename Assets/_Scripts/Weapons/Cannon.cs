@@ -23,7 +23,7 @@ public class Cannon : MonoBehaviour, IWeapon
 
     public void Fire(Vector2 direction)
     {
-        if (Time.time - lastFireTime >= 0.75f / playerStats.firingSpeed)
+        if (Time.time - lastFireTime >= 1.25f / playerStats.firingSpeed)
         {
             var cannonBall = Instantiate(cannonBallPrefab, transform.position, Quaternion.identity).GetComponent<CannonBall>();
             Vector2 combinedDirection = direction + (playerRb.velocity.normalized / 2);

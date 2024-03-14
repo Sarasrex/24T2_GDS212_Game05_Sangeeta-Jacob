@@ -195,6 +195,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   range: 3
+  cannonBallAudioPrefab: {fileID: 4545822910753816668, guid: e80b339beac1ed842a7a69497b65eee6, type: 3}
   shockwaveRadius: 1.25
   shockwaveDamage: 15
   shockwaveForce: 75

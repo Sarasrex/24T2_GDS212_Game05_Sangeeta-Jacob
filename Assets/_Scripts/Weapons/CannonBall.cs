@@ -11,6 +11,8 @@ public class CannonBall : MonoBehaviour
     private PlayerStats playerStats;
     private Rigidbody2D rb;
 
+    [SerializeField] private GameObject cannonBallAudioPrefab;
+
     // Shockwave
     [SerializeField] private float shockwaveRadius = 3f;
     [SerializeField] private int shockwaveDamage = 15;
@@ -40,6 +42,7 @@ public class CannonBall : MonoBehaviour
 
     void DestructionSequence()
     {
+        Instantiate(cannonBallAudioPrefab);
         rb.velocity = Vector2.zero;
         gameObject.transform.localScale = Vector3.one;
         ScreenShakeController.Instance.StartShake(0.25f, 0.15f);
@@ -71,6 +74,11 @@ public class CannonBall : MonoBehaviour
                     Vector2 forceDirection = hit.transform.position - transform.position;
                     hitRb.AddForce(forceDirection.normalized * shockwaveForce);
                 }
+            }
+
+            else if (hit.CompareTag("Rock"))
+            {
+                Destroy(hit.gameObject);
             }
         }
 

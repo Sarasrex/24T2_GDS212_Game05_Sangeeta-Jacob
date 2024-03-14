@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public PlayerStats playerStats;
     [SerializeField] private IWeapon currentWeapon;
     private HealthUI healthUI;
+    [SerializeField] private GameObject lossPanel;
 
     private void Awake()
     {
@@ -77,6 +78,12 @@ public class PlayerController : MonoBehaviour
         }
 
         healthUI.UpdateHealth(playerStats.health);
+
+        if (playerStats.health <= 0)
+        {
+            Time.timeScale = 0;
+            lossPanel.SetActive(true);
+        }
     }
 
     private void FixedUpdate()

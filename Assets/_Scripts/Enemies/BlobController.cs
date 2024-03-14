@@ -86,6 +86,7 @@ public class BlobController : MonoBehaviour
         {
             GameObject player = collision.gameObject;
             player.GetComponent<PlayerController>().playerStats.ModifyHealth(-damage);
+            DamageFlashManager.Flash();
             isOnCooldown = true;
         }
     }
@@ -96,6 +97,7 @@ public class BlobController : MonoBehaviour
         {
             GameObject player = collision.gameObject;
             player.GetComponent<PlayerController>().playerStats.ModifyHealth(-damage);
+            DamageFlashManager.Flash();
             isOnCooldown = true;
         }
     }

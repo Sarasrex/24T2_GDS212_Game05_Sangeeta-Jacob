@@ -8,6 +8,10 @@ public class MySceneManager : MonoBehaviour
 
     public GameObject playButton;
 
+    private void Awake()
+    {
+        Time.timeScale = 1.0f;
+    }
 
     public void MainMenu()
     {

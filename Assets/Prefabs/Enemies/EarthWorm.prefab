@@ -176,6 +176,7 @@ MonoBehaviour:
   health: 20
   damage: 2
   attackCooldown: 5
+  isKnockedBack: 0
 --- !u!95 &3706266394337751545
 Animator:
   serializedVersion: 5
