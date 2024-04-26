@@ -279,6 +279,8 @@ public class RoomGenerator : MonoBehaviour
 
         currentRoom = nextRoom.RoomObject;
         currentPosition = nextPosition;
+
+        DataPersistenceManager.SaveGame();
     }
 
     public void TransitionToBossRoom(int doorIndex)
@@ -322,6 +324,8 @@ public class RoomGenerator : MonoBehaviour
 
         currentRoom = nextRoom.RoomObject;
         currentPosition = nextPosition;
+
+        DataPersistenceManager.SaveGame();
     }
 
     // Sangeeta is a nerd

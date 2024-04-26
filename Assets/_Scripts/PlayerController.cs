@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     private RoomGenerator roomGenerator;
     private Animator animator;
     public PlayerStats playerStats;
-    [SerializeField] private IWeapon currentWeapon;
+    [SerializeField] public IWeapon currentWeapon;
     private HealthUI healthUI;
     [SerializeField] private GameObject lossPanel;
 
