@@ -123,6 +123,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &180274742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 180274744}
+  - component: {fileID: 180274743}
+  m_Layer: 0
+  m_Name: DataPersistenceManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &180274743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180274742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6371543d12daf2d4cb87474010350424, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fileName: SavedData.json
+  useEncryption: 1
+--- !u!4 &180274744
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 180274742}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &386258710
 GameObject:
   m_ObjectHideFlags: 0
@@ -186,6 +232,7 @@ GameObject:
   - component: {fileID: 477071963}
   - component: {fileID: 477071969}
   - component: {fileID: 477071970}
+  - component: {fileID: 477071973}
   - component: {fileID: 477071962}
   - component: {fileID: 477071971}
   - component: {fileID: 477071972}
@@ -209,13 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef0a054327287864181ff0d8e2fdbeb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerStats:
-    maxHealth: 6
-    health: 6
-    damage: 10
-    speed: 4
-    firingSpeed: 2
-    pierce: 1
+  playerStats: {fileID: 477071973}
   lossPanel: {fileID: 1497933673}
 --- !u!61 &477071963
 BoxCollider2D:
@@ -496,6 +537,24 @@ MonoBehaviour:
   flashColor: {r: 1, g: 0, b: 0, a: 1}
   flashDuration: 0.2
   numberOfFlashes: 2
+--- !u!114 &477071973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 477071961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9f82e68928858da4cabece42b180cddd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 6
+  health: 6
+  damage: 10
+  speed: 5
+  firingSpeed: 2
+  pierce: 1
 --- !u!1 &524451702
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,13 +983,7 @@ MonoBehaviour:
   fullHeartPrefab: {fileID: 9111954796391205659, guid: 0b62a50961364ad4db44aab8546aadd2, type: 3}
   halfHeartPrefab: {fileID: 8080036040898564568, guid: e51ebf7012d7f56439bfec6f92aae605, type: 3}
   heartsContainer: {fileID: 1307496178}
-  playerStats:
-    maxHealth: 0
-    health: 0
-    damage: 0
-    speed: 0
-    firingSpeed: 0
-    pierce: 0
+  playerStats: {fileID: 477071973}
 --- !u!4 &1177815380
 Transform:
   m_ObjectHideFlags: 0
@@ -1662,3 +1715,4 @@ SceneRoots:
   - {fileID: 386258712}
   - {fileID: 524451704}
   - {fileID: 1756709118}
+  - {fileID: 180274744}
