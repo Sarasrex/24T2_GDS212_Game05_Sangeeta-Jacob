@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDataPersistence
 {
     private float horizontal;
     private float vertical;
@@ -27,6 +27,16 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         roomGenerator = GameObject.FindWithTag("GameController").GetComponent<RoomGenerator>();
         healthUI = GameObject.FindWithTag("UIManager").GetComponent<HealthUI>();
+    }
+
+    public void LoadData(GameData data)
+    {
+        gameObject.transform.position = data.playerPosition;
+    }
+
+    public void SaveData(GameData data) 
+    {
+        data.playerPosition = gameObject.transform.position;
     }
 
     void Start()

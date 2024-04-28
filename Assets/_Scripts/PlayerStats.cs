@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 [System.Serializable]
-public class PlayerStats
+public class PlayerStats : MonoBehaviour, IDataPersistence
 {
     public int maxHealth;
     public int health;
@@ -52,5 +52,25 @@ public class PlayerStats
     public void ModifyPierce(int amount)
     {
         pierce += amount;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.maxHealth = data.maxHealth;
+        this.health = data.health;
+        this.damage = data.damage;
+        this.speed = data.speed;
+        this.firingSpeed = data.firingSpeed;
+        this.pierce = data.pierce;
+    }
+
+    public void SaveData(GameData data) 
+    {
+        data.maxHealth = this.maxHealth;
+        data.health = this.health;
+        data.damage = this.damage;
+        data.speed = this.speed;
+        data.firingSpeed = this.firingSpeed;
+        data.pierce = this.pierce;
     }
 }
