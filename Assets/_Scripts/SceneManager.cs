@@ -2,25 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MySceneManager : MonoBehaviour
 {
+    [SerializeField] private Button continueGameButton;
 
-    public GameObject playButton;
-
-    private void Awake()
+    private void Start()
     {
-        Time.timeScale = 1.0f;
+        if (!DataPersistenceManager.instance.HasGameData())
+        {
+            continueGameButton.interactable = false;
+        }
     }
 
-    public void MainMenu()
+    public void OnNewGameClicked()
     {
-        SceneManager.LoadSceneAsync(0);
+        DataPersistenceManager.NewGame();
+        SceneManager.LoadSceneAsync("JacobTestScene");
     }
 
-    public void Play ()
+    public void OnContinueGameClicked()
     {
-        SceneManager.LoadSceneAsync(1);
+        SceneManager.LoadSceneAsync("JacobTestScene");
     }
-
 }

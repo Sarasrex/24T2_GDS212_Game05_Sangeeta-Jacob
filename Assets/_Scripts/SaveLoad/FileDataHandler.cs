@@ -18,8 +18,6 @@ public class FileDataHandler
     private static byte[] aesKey = Encoding.UTF8.GetBytes(aesKeyString);
     private static byte[] aesIV = Encoding.UTF8.GetBytes(aesIVString);
 
-
-
     public FileDataHandler(string dataDirPath, string dataFileName, bool useEncryption)
     {
         this.dataDirPath = dataDirPath;
