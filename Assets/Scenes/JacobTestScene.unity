@@ -509,6 +509,8 @@ MonoBehaviour:
   speed: 5
   firingSpeed: 2
   pierce: 1
+  volume: {fileID: 386258711}
+  chromaticAbberationEffectDuration: 0.5
 --- !u!1 &524451702
 GameObject:
   m_ObjectHideFlags: 0
@@ -1640,7 +1642,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc1ed2111acc7084cb617654e60fac15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playButton: {fileID: 0}
+  continueGameButton: {fileID: 0}
 --- !u!4 &1756709118
 Transform:
   m_ObjectHideFlags: 0

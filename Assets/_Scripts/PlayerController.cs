@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour, IDataPersistence
         {
             Time.timeScale = 0;
             lossPanel.SetActive(true);
+            DataPersistenceManager.SaveGame();
         }
     }
 
